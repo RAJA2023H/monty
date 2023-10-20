@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 #define MAX_SIZE 1024
 #define MAX_LINES 100
 #define MAX_LEN 10

@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 /**
  * removeSpacesDoller - removes soaces and dollar signe.
  * @str : the opcode string
