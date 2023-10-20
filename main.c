@@ -16,6 +16,11 @@ int main(int ac, char **av)
 	unsigned int line = 0;
 	int i = 0, a;
 	char data[MAX_LINES][2][MAX_LEN];
+	instruction_t instructions[] = {
+		{"push", push},
+		{"pall", pall},
+		{NULL, NULL}
+	};
 
 	init_stack(&my_stack);
 	if (ac != 2)
@@ -36,40 +41,48 @@ int main(int ac, char **av)
 		line++;
 		while (token != NULL)
 		{
-			if (strcmp(token, "push") == 0)
+			found = 0;
+			for (a = 0; instructions[a].opcode != NULL; a++)
 			{
-				strcpy(data[i][0], token);
-				token = strtok(NULL, " ");
-				if (token != NULL)
+				if (strcmp(token, instructions[a].opcode) == 0)
 				{
-					if (isInteger(token))
-						strcpy(data[i][1], token);
+					if (strcmp(token, "push") == 0)
+					{
+						token = strtok(NULL, " ");
+						if (token != NULL)
+						{
+							if (isInteger(token))
+							{
+								strcpy(data[i][0], instructions[a].opcode);
+								strcpy(data[i][1], token);
+								i++;
+							}
+							else
+							{
+								printf("L%d: usage: push integer\n", line);
+								exit(EXIT_FAILURE);
+							}
+						}
+					}
 					else
 					{
-						printf("L%d: usage: push integer\n", line);
-						exit(EXIT_FAILURE);
+						strcpy(data[i][0], instructions[a].opcode);
+						strcpy(data[i][1], "");
+						i++;
 					}
+					found = 1;
+					break;
 				}
-				i++;
 			}
-			else if (strcmp(token, "pall") == 0)
-			{
-				strcpy(data[i][0], token);
-				token = strtok(NULL, " ");
-				if (token != NULL)
-				{
-					strcpy(data[i][1], "");
-				}
-				i++;
-			} else
+			if (!found)
 			{
 				printf("L%d: unknown instruction  %s\n", line, token);
 				exit(EXIT_FAILURE);
 			}
-			break;
 			token = strtok(NULL, " ");
 		}
 	}
+
 	fclose(fp);
 	return (0);
 }
