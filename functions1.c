@@ -53,9 +53,9 @@ void push(stack_t **stack, unsigned int data)
  *
  * Return: void
  */
-void pall(stack_t *stack, unsigned int data)
+void pall(stack_t **stack, unsigned int data)
 {
-	stack_t *current = stack;
+	stack_t *current = *stack;
 	(void)data;
 	while (current != NULL)
 	{

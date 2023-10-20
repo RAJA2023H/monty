@@ -14,7 +14,7 @@ int main(int ac, char **av)
 	stack_t *my_stack;
 	char buffer[MAX_SIZE], *token;
 	unsigned int line = 0;
-	int i = 0, a;
+	int i = 0, a, found;
 	char data[MAX_LINES][2][MAX_LEN];
 	instruction_t instructions[] = {
 		{"push", push},
