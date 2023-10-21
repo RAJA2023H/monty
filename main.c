@@ -45,9 +45,7 @@ int main(int ac, char **av)
 			for (i = 0; i < len; i++)
 			{
 				if (!isprint(token[i]))
-				{
 					token[i] = '\0';
-				}
 			}
 			found = 0;
 			for (a = 0; instructions[a].opcode != NULL; a++)
@@ -60,24 +58,22 @@ int main(int ac, char **av)
 						if (token != NULL)
 						{
 							if (isInteger(token))
-							{
 								push(&my_stack, atoi(token));
-							}
 							else
 							{
-								printf("L%d: usage: push integer\n", line);
+								fprintf(stderr, "L%d: usage: push integer\n", line);
 								exit(EXIT_FAILURE);
 							}
 						}
+						else
+						{
+							fprintf(stderr, "L%d: missing argument for push\n", line);
+							exit(EXIT_FAILURE);
+						}
 					}
 					else
-					{
-						strcpy(data[i][0], instructions[a].opcode);
-						strcpy(data[i][1], "");
-						i++;
-					}
+						instructions[a].f(&my_stack, line);
 					found = 1;
-					break;
 				}
 			}
 			if (!found)
@@ -85,6 +81,7 @@ int main(int ac, char **av)
 				printf("L%d: unknown instruction  %s\n", line, token);
 				exit(EXIT_FAILURE);
 			}
+			break;
 			token = strtok(NULL, " ");
 		}
 	}
