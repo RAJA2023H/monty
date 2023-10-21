@@ -14,8 +14,8 @@ int main(int ac, char **av)
 	stack_t *my_stack;
 	char buffer[MAX_SIZE], *token;
 	unsigned int line = 0;
-	int i = 0, a, found;
-	char data[MAX_LINES][2][MAX_LEN];
+	int a, found;
+	size_t i, len;
 	instruction_t instructions[] = {
 		{"push", push},
 		{"pall", pall},
@@ -41,6 +41,14 @@ int main(int ac, char **av)
 		line++;
 		while (token != NULL)
 		{
+			len = strlen(token);
+			for (i = 0; i < len; i++)
+			{
+				if (!isprint(token[i]))
+				{
+					token[i] = '\0';
+				}
+			}
 			found = 0;
 			for (a = 0; instructions[a].opcode != NULL; a++)
 			{
@@ -53,9 +61,7 @@ int main(int ac, char **av)
 						{
 							if (isInteger(token))
 							{
-								strcpy(data[i][0], instructions[a].opcode);
-								strcpy(data[i][1], token);
-								i++;
+								push(&my_stack, atoi(token));
 							}
 							else
 							{
