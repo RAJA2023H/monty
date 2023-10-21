@@ -25,13 +25,13 @@ int main(int ac, char **av)
 	init_stack(&my_stack);
 	if (ac != 2)
 	{
-		printf("USAGE: monty file\n");
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	fp = fopen(av[1], "r");
 	if (fp == NULL)
 	{
-		printf("Error: Can't open file %s\n", av[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
 		exit(EXIT_FAILURE);
 	}
 	while (fgets(buffer, sizeof(buffer), fp) != NULL)
@@ -78,7 +78,7 @@ int main(int ac, char **av)
 			}
 			if (!found)
 			{
-				printf("L%d: unknown instruction  %s\n", line, token);
+				fprintf(stderr, "L%d: unknown instruction %s\n", line, token);
 				exit(EXIT_FAILURE);
 			}
 			break;
