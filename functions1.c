@@ -44,7 +44,7 @@ void push(stack_t **stack, unsigned int data)
 		*stack = newNode; /*Update the stack pointer to the new top node*/
 	}
 	else
-		printf("Failed to push data onto the stack\n");
+		fprintf(stderr,"Failed to push data onto the stack\n");
 }
 /**
  * pall - print all elements of my stack
@@ -59,7 +59,7 @@ void pall(stack_t **stack, unsigned int data)
 	(void)data;
 	while (current != NULL)
 	{
-		printf("%d\n", current->n);
+		fprintf(stdout,"%d\n", current->n);
 		current = current->prev;
 	}
 }
