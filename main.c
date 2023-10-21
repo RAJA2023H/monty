@@ -19,6 +19,7 @@ int main(int ac, char **av)
 	instruction_t instructions[] = {
 		{"push", push},
 		{"pall", pall},
+		{"pint", pint},
 		{NULL, NULL}
 	};
 
@@ -54,7 +55,7 @@ int main(int ac, char **av)
 				{
 					if (strcmp(token, "push") == 0)
 					{
-						token = strtok(NULL, " ");
+						token = strtok(NULL, " \n\t\r");
 						if (token != NULL)
 						{
 							if (isInteger(token))

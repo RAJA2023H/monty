@@ -63,3 +63,19 @@ void pall(stack_t **stack, unsigned int data)
 		current = current->prev;
 	}
 }
+/**
+ * pint - print the value at the top of the stack without removing it
+ * @stack: stack_t
+ * @data: value
+ *
+ * Return: void
+ */
+void pint(stack_t **stack, unsigned int data)
+{
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", data);
+		exit(EXIT_FAILURE);
+	}
+	fprintf(stdout, "%d\n", (*stack)->n);
+}

@@ -47,5 +47,6 @@ void push(stack_t **stack, unsigned int data);
 void pall(stack_t **my_stack, unsigned int data);
 stack_t *create_node(int data);
 int isInteger(const char *str);
+void pint(stack_t **stack, unsigned int data);
 
 #endif
