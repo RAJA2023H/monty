@@ -62,13 +62,13 @@ int main(int ac, char **av)
 								push(&my_stack, atoi(token));
 							else
 							{
-								fprintf(stderr, "L%d: usage: push integer\n", line);
+								fprintf(stderr, "L%u: usage: push integer\n", line);
 								exit(EXIT_FAILURE);
 							}
 						}
 						else
 						{
-							fprintf(stderr, "L%d: missing argument for push\n", line);
+							fprintf(stderr, "L%u: missing argument for push\n", line);
 							exit(EXIT_FAILURE);
 						}
 					}
@@ -79,7 +79,7 @@ int main(int ac, char **av)
 			}
 			if (!found)
 			{
-				fprintf(stderr, "L%d: unknown instruction %s\n", line, token);
+				fprintf(stderr, "L%u: unknown instruction %s\n", line, token);
 				exit(EXIT_FAILURE);
 			}
 			break;
