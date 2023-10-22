@@ -38,7 +38,7 @@ int main(int ac, char **av)
 	while (fgets(buffer, sizeof(buffer), fp) != NULL)
 	{
 		removeSpacesDoller(buffer);
-		token = strtok(buffer, " ;\n");
+		token = strtok(buffer, " \n");
 		line++;
 		while (token != NULL)
 		{
@@ -55,7 +55,7 @@ int main(int ac, char **av)
 				{
 					if (strcmp(token, "push") == 0)
 					{
-						token = strtok(NULL, " ;\n\t\r");
+						token = strtok(NULL, " \n\t\r");
 						if (token != NULL)
 						{
 							if (isInteger(token))
