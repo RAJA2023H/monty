@@ -1,15 +1,5 @@
 #include "monty.h"
 /**
- * init_stack - initialize my stack
- * @my_stack: stack_t element
- *
- * Return: void
- */
-void init_stack(stack_t **my_stack)
-{
-	*my_stack = NULL;
-}
-/**
  * create_node - create new node for my stack
  * @data: value to add to node
  *
@@ -38,13 +28,26 @@ void push(stack_t **stack, unsigned int data)
 {
 	stack_t *newNode = create_node(data);
 	/*Set the new node's previous pointer to the current top of the stack */
-	if (newNode != NULL)
+	if (newNode == NULL)
 	{
-		newNode->prev = *stack;
-		*stack = newNode; /*Update the stack pointer to the new top node*/
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	if (stack == NULL)
+	{
+		fprintf(stderr, "Error: empty stack\n");
+		exit(EXIT_FAILURE);
+	}
+	if (*stack)
+	{
+		newNode->next = *stack;
+		(*stack)->prev = newNode;
 	}
 	else
-		fprintf(stderr,"Failed to push data onto the stack\n");
+		newNode->next = NULL;
+	newNode->prev = NULL;
+
+	*stack = newNode;
 }
 /**
  * pall - print all elements of my stack
@@ -60,7 +63,7 @@ void pall(stack_t **stack, unsigned int data)
 	while (current != NULL)
 	{
 		fprintf(stdout,"%d\n", current->n);
-		current = current->prev;
+		current = current->next;
 	}
 }
 /**

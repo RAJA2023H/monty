@@ -1,5 +1,15 @@
 #include "monty.h"
 /**
+ * init_stack - initialize my stack
+ * @my_stack: stack_t element
+ *
+ * Return: void
+ */
+void init_stack(stack_t **my_stack)
+{
+	*my_stack = NULL;
+}
+/**
  * removeSpacesDoller - removes soaces and dollar signe.
  * @str : the opcode string
  * Return : void.
@@ -57,18 +67,20 @@ int isInteger(const char *str)
 void swap(stack_t **stack, unsigned int line) {
 	stack_t *top;
 	stack_t *second;
-	unsigned int temp;
 
-	if (*stack == NULL || (*stack)->next == NULL)
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 	{
 		fprintf(stderr, "L%u: can't swap, not enough elements in the stack\n", line);
 		exit(EXIT_FAILURE);
 	}
+	if (top->next->next != NULL)
+		top->next->next->prev = top;
 
-	top = *stack;
-	second = (*stack)->next;
+	top->next  = second-next;
+	second->next = top;
 
-	temp = top->n;
-	top->n = second->n;
-	second->n = temp;
-}
+	top->prev = second;
+	second->prev = NULL;
+
+	*stack = second
+	}
