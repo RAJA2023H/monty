@@ -79,3 +79,26 @@ void pint(stack_t **stack, unsigned int data)
 	}
 	fprintf(stdout, "%d\n", (*stack)->n);
 }
+/**
+ * pop - remove the top element of the stack
+ * @stack: double pointer to the head of the stack
+ * @line_number: line number of the opcode
+ */
+void pop(stack_t **stack, unsigned int data)
+{
+	stack_t *temp;
+
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", data);
+		exit(EXIT_FAILURE);
+	}
+	temp = *stack;
+	*stack = (*stack)->prev;
+	free(temp);
+
+	if (*stack != NULL)
+	{
+		(*stack)->next = NULL;
+	}
+}
