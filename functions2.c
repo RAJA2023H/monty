@@ -68,7 +68,7 @@ void swap(stack_t **stack, unsigned int line) {
 	stack_t *top;
 	stack_t *second;
 
-	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+	if (!stack || !*stack || !(*stack)->next || stackLength(*stack) < 3)
 	{
 		fprintf(stderr, "L%u: can't swap, not enough elements in the stack\n", line);
 		exit(EXIT_FAILURE);
@@ -86,4 +86,21 @@ void swap(stack_t **stack, unsigned int line) {
 	second->prev = NULL;
 
 	*stack = second;
+}
+/**
+ * stackLength - length of stack
+ * @top: stack_t
+ *
+ * Return: integer
+ */
+int stackLength(stack_t *top)
+{
+	int length = 0;
+
+	while (top != NULL)
+	{
+		length++;
+		top = top->next;
 	}
+	return length;
+}
