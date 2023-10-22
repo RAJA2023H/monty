@@ -9,6 +9,11 @@ stack_t *create_node(int data)
 {
 	stack_t *newNode = (stack_t *)malloc(sizeof(stack_t));
 
+	if (newNode == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 	if (newNode != NULL)
 	{
 		newNode->n = data;
@@ -28,14 +33,10 @@ void push(stack_t **stack, unsigned int data)
 {
 	stack_t *newNode = create_node(data);
 	/*Set the new node's previous pointer to the current top of the stack */
-	if (newNode == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
 	if (stack == NULL)
 	{
 		fprintf(stderr, "Error: empty stack\n");
+		free(newNode);
 		exit(EXIT_FAILURE);
 	}
 	if (*stack)

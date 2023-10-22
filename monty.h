@@ -51,5 +51,5 @@ void pint(stack_t **stack, unsigned int data);
 void pop(stack_t **stack, unsigned int data);
 void swap(stack_t **stack, unsigned int line);
 int stackLength(stack_t *top);
-
+void nop(stack_t **stack, unsigned int line_number);
 #endif
