@@ -70,7 +70,7 @@ int main(int ac, char **av)
 						}
 						else
 						{
-							fprintf(stderr, "L%u: missing argument for push\n", line);
+							fprintf(stderr, "L%u: usage: push integer\n", line);
 							exit(EXIT_FAILURE);
 						}
 					}
