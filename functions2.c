@@ -47,3 +47,28 @@ int isInteger(const char *str)
 	strtol(str, &endptr, 10);
 	return (*endptr == '\0');
 }
+/**
+ * swap - swap the two top elements
+ * @stack: my stack
+ * @line: error line
+ *
+ * Return: void
+ */
+void swap(stack_t **stack, unsigned int line) {
+	stack_t *top;
+	stack_t *second;
+	unsigned int temp;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%u: can't swap, not enough elements in the stack\n", line);
+		exit(EXIT_FAILURE);
+	}
+
+	top = *stack;
+	second = (*stack)->next;
+
+	temp = top->n;
+	top->n = second->n;
+	second->n = temp;
+}

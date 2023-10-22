@@ -49,5 +49,6 @@ stack_t *create_node(int data);
 int isInteger(const char *str);
 void pint(stack_t **stack, unsigned int data);
 void pop(stack_t **stack, unsigned int data);
+void swap(stack_t **stack, unsigned int line);
 
 #endif
