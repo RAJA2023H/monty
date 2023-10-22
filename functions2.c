@@ -73,14 +73,17 @@ void swap(stack_t **stack, unsigned int line) {
 		fprintf(stderr, "L%u: can't swap, not enough elements in the stack\n", line);
 		exit(EXIT_FAILURE);
 	}
+	top = *stack;
+	second = top->next;
+
 	if (top->next->next != NULL)
 		top->next->next->prev = top;
 
-	top->next  = second-next;
+	top->next  = second->next;
 	second->next = top;
 
 	top->prev = second;
 	second->prev = NULL;
 
-	*stack = second
+	*stack = second;
 	}
